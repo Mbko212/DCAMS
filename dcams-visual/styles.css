@@ -1,0 +1,445 @@
+:root {
+  color-scheme: light;
+  --bg: #0f172a;
+  --panel: #111c3a;
+  --panel-alt: #162452;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --outline: #38bdf8;
+  --shadow: 0 14px 28px rgba(15, 23, 42, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.dcams-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.dcams-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  background: var(--panel);
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.dcams-topbar h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.dcams-topbar .dcams-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.dcams-topbar input,
+.dcams-topbar select,
+.dcams-topbar button {
+  background: var(--panel-alt);
+  border: 1px solid transparent;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.dcams-topbar button {
+  cursor: pointer;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.dcams-topbar button.active {
+  background: var(--accent);
+  color: #0f172a;
+}
+
+.dcams-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.dcams-panel {
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 16px;
+  min-height: 520px;
+  box-shadow: var(--shadow);
+}
+
+.dcams-tabs {
+  display: inline-flex;
+  gap: 6px;
+  background: rgba(56, 189, 248, 0.08);
+  border-radius: 999px;
+  padding: 6px;
+}
+
+.dcams-tabs button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.dcams-tabs button.active {
+  color: var(--text);
+  background: var(--panel-alt);
+}
+
+.dcams-map-wrapper {
+  position: relative;
+  min-height: 520px;
+  background: #0b1227;
+  border-radius: 12px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.dcams-map-layer {
+  width: 100%;
+  height: 100%;
+}
+
+.dcams-map-layer svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dcams-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dcams-card {
+  background: var(--panel-alt);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.1);
+}
+
+.dcams-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+}
+
+.dcams-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.dcams-kpi {
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.dcams-slot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 14px;
+  gap: 3px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.dcams-slot {
+  min-height: 14px;
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dcams-slot.occupied {
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.dcams-slot.occupied::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+  animation: led 2s infinite;
+}
+
+.dcams-slot.empty {
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.dcams-slot .dcams-slot-label {
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+.dcams-asset-block {
+  background: rgba(56, 189, 248, 0.4);
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 11px;
+  color: #e0f2fe;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+  grid-column: 1 / -1;
+  z-index: 2;
+}
+
+.dcams-asset-block.warning {
+  background: rgba(251, 191, 36, 0.4);
+}
+
+.dcams-asset-block.critical {
+  background: rgba(248, 113, 113, 0.45);
+}
+
+.dcams-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.dcams-pill {
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.dcams-map-marker {
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.dcams-map-marker:hover {
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7));
+  animation: breathe 2.4s infinite;
+}
+
+.dcams-map-marker.selected {
+  outline: 2px solid var(--outline);
+  outline-offset: 2px;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
+}
+
+.dcams-map-marker.filtered-out {
+  opacity: 0.2;
+}
+
+.dcams-connection-path {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.6);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  animation: flow 4s linear infinite;
+}
+
+.dcams-connection-path.warning {
+  stroke: rgba(251, 191, 36, 0.8);
+}
+
+.dcams-connection-path.critical {
+  stroke: rgba(248, 113, 113, 0.8);
+}
+
+.dcams-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dcams-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+}
+
+.dcams-status-dot.warning {
+  background: var(--warning);
+  animation: pulse 2s infinite;
+}
+
+.dcams-status-dot.critical {
+  background: var(--danger);
+  animation: pulse 1.4s infinite;
+}
+
+.dcams-ups-marker.healthy {
+  fill: rgba(34, 197, 94, 0.6);
+  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
+}
+
+.dcams-ups-marker.warning {
+  fill: rgba(251, 191, 36, 0.6);
+  animation: pulse 2s infinite;
+}
+
+.dcams-ups-marker.critical {
+  fill: rgba(248, 113, 113, 0.7);
+  animation: pulse 1.2s infinite;
+}
+
+.dcams-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(15, 23, 42, 0.92);
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: var(--text);
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.dcams-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dcams-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.dcams-modal.active {
+  display: flex;
+}
+
+.dcams-modal-content {
+  background: var(--panel);
+  padding: 16px;
+  border-radius: 12px;
+  width: min(420px, 90vw);
+  box-shadow: var(--shadow);
+}
+
+.dcams-modal-content label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--muted);
+}
+
+.dcams-modal-content input,
+.dcams-modal-content textarea,
+.dcams-modal-content select {
+  width: 100%;
+  margin-bottom: 10px;
+  background: var(--panel-alt);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--text);
+}
+
+.dcams-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.dcams-rtl {
+  direction: rtl;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(248, 113, 113, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.9));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4));
+  }
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes led {
+  0% {
+    opacity: 0.3;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .dcams-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dcams-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dcams-topbar .dcams-controls {
+    margin-left: 0;
+  }
+}

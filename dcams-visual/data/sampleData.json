@@ -1,0 +1,66 @@
+{
+  "racks": [
+    { "RackId": "R01", "LocationX": 60, "LocationY": 80, "TotalSlots": 42, "PowerCapacity": 12, "PhysicalCapacity": 400, "Notes": "Row A" },
+    { "RackId": "R02", "LocationX": 140, "LocationY": 80, "TotalSlots": 42, "PowerCapacity": 12, "PhysicalCapacity": 400, "Notes": "Row A" },
+    { "RackId": "R03", "LocationX": 220, "LocationY": 80, "TotalSlots": 42, "PowerCapacity": 14, "PhysicalCapacity": 450, "Notes": "Row A" },
+    { "RackId": "R04", "LocationX": 300, "LocationY": 80, "TotalSlots": 42, "PowerCapacity": 14, "PhysicalCapacity": 450, "Notes": "Row A" },
+    { "RackId": "R05", "LocationX": 60, "LocationY": 190, "TotalSlots": 42, "PowerCapacity": 10, "PhysicalCapacity": 380, "Notes": "Row B" },
+    { "RackId": "R06", "LocationX": 140, "LocationY": 190, "TotalSlots": 42, "PowerCapacity": 10, "PhysicalCapacity": 380, "Notes": "Row B" },
+    { "RackId": "R07", "LocationX": 220, "LocationY": 190, "TotalSlots": 42, "PowerCapacity": 11, "PhysicalCapacity": 390, "Notes": "Row B" },
+    { "RackId": "R08", "LocationX": 300, "LocationY": 190, "TotalSlots": 42, "PowerCapacity": 11, "PhysicalCapacity": 390, "Notes": "Row B" },
+    { "RackId": "R09", "LocationX": 60, "LocationY": 300, "TotalSlots": 42, "PowerCapacity": 12, "PhysicalCapacity": 420, "Notes": "Row C" },
+    { "RackId": "R10", "LocationX": 140, "LocationY": 300, "TotalSlots": 42, "PowerCapacity": 12, "PhysicalCapacity": 420, "Notes": "Row C" },
+    { "RackId": "R11", "LocationX": 220, "LocationY": 300, "TotalSlots": 42, "PowerCapacity": 12, "PhysicalCapacity": 420, "Notes": "Row C" },
+    { "RackId": "R12", "LocationX": 300, "LocationY": 300, "TotalSlots": 42, "PowerCapacity": 12, "PhysicalCapacity": 420, "Notes": "Row C" }
+  ],
+  "assets": [
+    { "AssetId": "SRV-1001", "RackId": "R01", "SlotFrom": 1, "SlotTo": 2, "DeviceType": "Server", "Brand": "Dell", "Model": "R740", "Serial": "DX123", "PowerLoadKW": 0.8, "PhysicalLoadKG": 18, "Consumption": "High", "Status": "Healthy", "UpdatedAt": "2024-08-24T12:00:00Z" },
+    { "AssetId": "SRV-1002", "RackId": "R01", "SlotFrom": 10, "SlotTo": 12, "DeviceType": "Storage", "Brand": "NetApp", "Model": "FAS", "Serial": "NA456", "PowerLoadKW": 1.1, "PhysicalLoadKG": 28, "Consumption": "Medium", "Status": "Warning", "UpdatedAt": "2024-08-24T12:05:00Z" },
+    { "AssetId": "SRV-1003", "RackId": "R03", "SlotFrom": 5, "SlotTo": 6, "DeviceType": "Server", "Brand": "HPE", "Model": "DL380", "Serial": "HP789", "PowerLoadKW": 0.7, "PhysicalLoadKG": 16, "Consumption": "Low", "Status": "Healthy", "UpdatedAt": "2024-08-24T12:12:00Z" },
+    { "AssetId": "SRV-1004", "RackId": "R04", "SlotFrom": 15, "SlotTo": 20, "DeviceType": "Switch", "Brand": "Cisco", "Model": "Nexus", "Serial": "CS110", "PowerLoadKW": 0.6, "PhysicalLoadKG": 12, "Consumption": "Low", "Status": "Healthy", "UpdatedAt": "2024-08-24T12:16:00Z" },
+    { "AssetId": "SRV-1005", "RackId": "R06", "SlotFrom": 30, "SlotTo": 32, "DeviceType": "Server", "Brand": "Dell", "Model": "R640", "Serial": "DX222", "PowerLoadKW": 0.9, "PhysicalLoadKG": 20, "Consumption": "Medium", "Status": "Critical", "UpdatedAt": "2024-08-24T12:21:00Z" },
+    { "AssetId": "SRV-1006", "RackId": "R08", "SlotFrom": 1, "SlotTo": 4, "DeviceType": "Firewall", "Brand": "Palo Alto", "Model": "PA-5220", "Serial": "PA988", "PowerLoadKW": 0.5, "PhysicalLoadKG": 14, "Consumption": "Low", "Status": "Healthy", "UpdatedAt": "2024-08-24T12:35:00Z" }
+  ],
+  "connections": [
+    {
+      "ConnectionId": "CON-1",
+      "FromAssetId": "SRV-1001",
+      "ToEndpointLabel": "Core Switch",
+      "CableType": "Fiber",
+      "PortFrom": "Eth0",
+      "PortTo": "Port-12",
+      "PathPoints": [
+        { "x": 90, "y": 90 },
+        { "x": 140, "y": 120 },
+        { "x": 200, "y": 90 }
+      ],
+      "Notes": "Primary uplink",
+      "Status": "Healthy"
+    },
+    {
+      "ConnectionId": "CON-2",
+      "FromAssetId": "SRV-1002",
+      "ToEndpointLabel": "SAN",
+      "CableType": "Fiber",
+      "PortFrom": "Eth1",
+      "PortTo": "Port-08",
+      "PathPoints": [
+        { "x": 120, "y": 140 },
+        { "x": 200, "y": 160 },
+        { "x": 260, "y": 130 }
+      ],
+      "Notes": "Storage uplink",
+      "Status": "Warning"
+    }
+  ],
+  "ups": [
+    { "UpsId": "UPS01", "LocationX": 120, "LocationY": 80, "CapacityKVA": 120, "Status": "Healthy", "LastUpdated": "2024-08-24T12:22:00Z", "Notes": "Main" },
+    { "UpsId": "UPS02", "LocationX": 240, "LocationY": 140, "CapacityKVA": 80, "Status": "Warning", "LastUpdated": "2024-08-24T12:25:00Z", "Notes": "Backup" },
+    { "UpsId": "UPS03", "LocationX": 360, "LocationY": 200, "CapacityKVA": 100, "Status": "Critical", "LastUpdated": "2024-08-24T12:29:00Z", "Notes": "Secondary" }
+  ],
+  "batteries": [
+    { "BatteryId": "BAT-01", "UpsId": "UPS01", "CapacityPct": 92, "Health": "Healthy", "InspectorComment": "All good", "UpdatedBy": "Inspector A", "UpdatedAt": "2024-08-24T12:10:00Z" },
+    { "BatteryId": "BAT-02", "UpsId": "UPS02", "CapacityPct": 76, "Health": "Warning", "InspectorComment": "Monitor voltage", "UpdatedBy": "Inspector B", "UpdatedAt": "2024-08-24T12:15:00Z" },
+    { "BatteryId": "BAT-03", "UpsId": "UPS03", "CapacityPct": 55, "Health": "Critical", "InspectorComment": "Replace within 24h", "UpdatedBy": "Inspector C", "UpdatedAt": "2024-08-24T12:20:00Z" }
+  ]
+}
